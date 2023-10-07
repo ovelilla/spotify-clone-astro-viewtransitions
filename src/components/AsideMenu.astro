@@ -1,0 +1,38 @@
+---
+import AsideMenuItem from "@/components/AsideMenuItem.astro";
+import AsideMenuCard from "@/components/AsideMenuCard.astro";
+import HomeIcon from "@/icons/Home.astro";
+import LibraryIcon from "@/icons/Library.astro";
+import SearchIcon from "@/icons/Search.astro";
+
+import { playlists } from "@/lib/data";
+---
+
+<aside class="hidden lg:inline relative overflow-y-auto overflow-x-hidden">
+  <nav class="flex flex-col gap-2 h-full">
+    <div class="bg-[#121212] rounded-lg">
+      <ul class="flex flex-col px-3 py-2">
+        <AsideMenuItem href="/" text="Home">
+          <HomeIcon />
+        </AsideMenuItem>
+        <AsideMenuItem href="#" text="Search">
+          <SearchIcon />
+        </AsideMenuItem>
+      </ul>
+    </div>
+
+    <div class="grow bg-[#121212] rounded-lg">
+      <ul class="flex flex-col gap-2 px-3 py-2">
+        <AsideMenuItem href="#" text="Your library">
+          <LibraryIcon />
+        </AsideMenuItem>
+      </ul>
+      
+      <ul class="flex flex-col px-2 py-2">
+        {playlists.map((playlist) => <AsideMenuCard playlist={playlist} />)}
+      </ul>
+    </div>
+  </nav>
+
+  <div class="absolute top-0 -right-2 h-full w-2 cursor-col-resize"></div>
+</aside>

@@ -1,0 +1,13 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Card from "@/components/Card.astro";
+import { playlists } from "@/lib/data";
+---
+
+<Layout title="Spotify Clone">
+  <div class="p-6">
+    <div class="grid grid-cols-[repeat(auto-fill,minmax(178px,1fr))] gap-6">
+      {playlists.map((playlist) => <Card playlist={playlist} />)}
+    </div>
+  </div>
+</Layout>
