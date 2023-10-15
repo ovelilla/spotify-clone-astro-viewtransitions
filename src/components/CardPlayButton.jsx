@@ -1,5 +1,5 @@
-import PlayIcon from "@/icons/Play.astro";
-import PauseIcon from "@/icons/Pause.astro";
+import PlayIcon from "@/icons/PlayCard";
+import PauseIcon from "@/icons/PauseCard";
 // import { usePlayerStore } from "@/store/playerStore";
 
 export function CardPlayButton({ id, size = "small" }) {
@@ -24,17 +24,17 @@ export function CardPlayButton({ id, size = "small" }) {
   //     });
   // };
 
-  // const iconClassName = size === "small" ? "w-4 h-4" : "w-5 h-5";
+  const iconClassName = size === "small" ? "w-4 h-4" : "w-5 h-5";
 
   return (
     <button
       // onClick={handleClick}
-      className="card-play-button rounded-full bg-green-500 p-4 hover:scale-105 transition hover:bg-green-400"
+      className="grid place-items-center w-12 h-12 rounded-full bg-[#1ed760] shadow-md transition duration-150 hover:bg-[#1fdf64] hover:scale-105"
     >
       {/* {isPlayingPlaylist ? (
         <PauseIcon className={iconClassName} /> */}
       {/* ) : ( */}
-      <PlayIcon className={iconClassName} />
+      <PlayIcon className={"text-black"} />
       {/* )} */}
     </button>
   );

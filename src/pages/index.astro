@@ -1,13 +1,23 @@
 ---
+import GreetingTitle from "@/components/GreetingTitle.svelte";
 import Layout from "@/layouts/Layout.astro";
+import CardHorizontal from "@/components/CardHorizontal.astro";
 import Card from "@/components/Card.astro";
-import { playlists } from "@/lib/data";
+import { playlists, morePlaylists } from "@/lib/data";
 ---
 
 <Layout title="Spotify Clone">
-  <div class="p-6">
-    <div class="grid grid-cols-[repeat(auto-fill,minmax(178px,1fr))] gap-6">
-      {playlists.map((playlist) => <Card playlist={playlist} />)}
+  <section class="flex flex-col gap-4 p-6">
+    <GreetingTitle />
+    <div class="grid sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+      {playlists.map((playlist) => <CardHorizontal playlist={playlist} />)}
     </div>
-  </div>
+  </section>
+
+  <section class="flex flex-col gap-4 p-6">
+    <h2 class="text-2xl font-bold">Made for you</h2>
+    <div class="grid grid-cols-[repeat(auto-fill,minmax(178px,1fr))] gap-6">
+      {morePlaylists.map((playlist) => <Card playlist={playlist} />)}
+    </div>
+  </section>
 </Layout>

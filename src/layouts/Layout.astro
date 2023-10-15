@@ -1,5 +1,6 @@
 ---
 import AsideMenu from "@/components/AsideMenu.astro";
+import Player from "@/components/Player.jsx";
 import { ViewTransitions } from "astro:transitions";
 
 interface Props {
@@ -22,89 +23,91 @@ const { title } = Astro.props;
   </head>
   <body>
     <div
-      class="grid grid-cols-[350px_1fr_auto] grid-rows-[1fr_auto] gap-2 h-screen p-2"
+      class="grid grid-cols-[0px_1fr_0px] lg:grid-cols-[350px_1fr_0px] grid-rows-[1fr_auto] gap-2 h-full p-2"
     >
       <AsideMenu />
-      <main class="col-span-2 bg-[#121212] rounded-lg">
+      <main class="col-span-3 lg:col-span-2 bg-[#121212] rounded-lg overflow-y-auto">
         <slot />
       </main>
-      <footer class="col-span-3 bg-[#121212] rounded-lg">hola</footer>
+      <footer class="col-span-3 bg-[#121212] rounded-lg">
+        <Player client:load transition:name="media-player" transition:persist />
+      </footer>
     </div>
+    <style is:global>
+      html {
+        height: 100%;
+        font-family: "CircularStd", system-ui, sans-serif;
+        background: #000000;
+        color: #ffffff;
+      }
+
+      body {
+        height: 100%;
+      }
+
+      @font-face {
+        font-family: "CircularStd";
+        src: url("/fonts/CircularStd-Medium.woff2") format("woff2");
+        font-weight: 500;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "CircularStd";
+        src: url("/fonts/CircularStd-Book.woff2") format("woff2");
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "CircularStd";
+        src: url("/fonts/CircularStd-Light.woff2") format("woff2");
+        font-weight: 300;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "CircularStd";
+        src: url("/fonts/CircularStd-Bold.woff2") format("woff2");
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "CircularStd";
+        src: url("/fonts/CircularStd-Black.woff2") format("woff2");
+        font-weight: 900;
+        font-style: normal;
+        font-display: swap;
+      }
+    </style>
+
+    <script>
+      const grid = document.querySelector("body > div") as HTMLElement;
+      const resizer = document.querySelector(
+        "body > div > aside > div"
+      ) as HTMLElement;
+
+      resizer?.addEventListener("mousedown", initResize, false);
+
+      function initResize(e: MouseEvent) {
+        window.addEventListener("mousemove", Resize, false);
+        window.addEventListener("mouseup", stopResize, false);
+      }
+
+      function Resize(e: MouseEvent) {
+        console.log(e.clientX);
+        grid.style.gridTemplateColumns = `${e.clientX - 8}px 1fr auto`;
+      }
+
+      function stopResize(e: MouseEvent) {
+        window.removeEventListener("mousemove", Resize, false);
+        window.removeEventListener("mouseup", stopResize, false);
+      }
+    </script>
   </body>
 </html>
-
-<style is:global>
-  html {
-    height: 100%;
-    font-family: "CircularStd", system-ui, sans-serif;
-    background: #000000;
-    color: #ffffff;
-  }
-
-  body {
-    height: 100%;
-  }
-
-  @font-face {
-    font-family: "CircularStd";
-    src: url("/fonts/CircularStd-Medium.woff2") format("woff2");
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: "CircularStd";
-    src: url("/fonts/CircularStd-Book.woff2") format("woff2");
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: "CircularStd";
-    src: url("/fonts/CircularStd-Light.woff2") format("woff2");
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: "CircularStd";
-    src: url("/fonts/CircularStd-Bold.woff2") format("woff2");
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: "CircularStd";
-    src: url("/fonts/CircularStd-Black.woff2") format("woff2");
-    font-weight: 900;
-    font-style: normal;
-    font-display: swap;
-  }
-</style>
-
-<script>
-  const grid = document.querySelector("body > div") as HTMLElement;
-  const resizer = document.querySelector(
-    "body > div > aside > div"
-  ) as HTMLElement;
-
-  resizer?.addEventListener("mousedown", initResize, false);
-
-  function initResize(e: MouseEvent) {
-    window.addEventListener("mousemove", Resize, false);
-    window.addEventListener("mouseup", stopResize, false);
-  }
-
-  function Resize(e: MouseEvent) {
-    grid.style.gridTemplateColumns = `${e.clientX}px 1fr auto`;
-  }
-
-  function stopResize(e: MouseEvent) {
-    window.removeEventListener("mousemove", Resize, false);
-    window.removeEventListener("mouseup", stopResize, false);
-  }
-</script>

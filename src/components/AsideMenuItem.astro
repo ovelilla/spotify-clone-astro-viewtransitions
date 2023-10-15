@@ -12,7 +12,7 @@ const { href, text } = Astro.props;
     href={href}
     class="flex gap-5 items-center a text-[#b3b3b3] hover:text-white h-[40px] font-bold transition-color duration-300"
   >
-    <slot />
-    <span>{ text }</span>
+    <slot class="shrink-0" />
+    <span class="truncate">{ text }</span>
   </a>
 </li>

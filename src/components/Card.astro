@@ -1,6 +1,6 @@
 ---
 import type { Playlist } from "@/lib/data";
-// import { CardPlayButton } from "./CardPlayButton";
+import { CardPlayButton } from "./CardPlayButton";
 
 interface Props {
   playlist: Playlist;
@@ -13,43 +13,41 @@ const artistsString = artists.join(", ");
 ---
 
 <article
-  class="group relative bg-[#181818] hover:bg-[#272727] shadow-lg hover:shadow-xl rounded-lg transition-colors duration-300"
+  class="group relative bg-[#181818] hover:bg-[#272727] rounded-lg transition-colors duration-300"
 >
-  <!-- <div
-    class=`absolute right-4 bottom-20 translate-y-4
-    transition-all duration-500 opacity-0
-    group-hover:translate-y-0 group-hover:opacity-100
-    z-10
-  `
-  > -->
-  <!-- <CardPlayButton id={id} client:visible /> -->
-  <!-- </div> -->
-
   <a
     href={`/playlist/${id}`}
     class="flex flex-col gap-4 relative h-full p-4"
     transition:name=`playlist ${id} box`
   >
-    <picture class="aspect-square">
-      <img
-        src={cover}
-        alt={`Cover of ${title} by ${artistsString}`}
-        class="object-cover w-full h-full rounded-md"
-        transition:name=`playlist ${id} image`
-      />
-    </picture>
+    <div class="relative">
+      <picture class="aspect-square">
+        <img
+          src={cover}
+          alt={`Cover of ${title} by ${artistsString}`}
+          class="object-cover w-full h-full rounded-md"
+          transition:name=`playlist ${id} image`
+        />
+      </picture>
+
+      <div
+        class="absolute right-2 bottom-2 translate-y-1 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 z-10"
+      >
+        <CardPlayButton id={id} client:visible />
+      </div>
+    </div>
 
     <div class="flex flex-col gap-1">
-      <h4 class="truncate" transition:name=`playlist ${id} title`>
+      <h3 class="truncate" transition:name=`playlist ${id} title`>
         {title}
-      </h4>
+      </h3>
 
-      <span
+      <p
         class="text-sm text-[#a7a7a7] line-clamp-2"
         transition:name=`playlist ${id} artists`
       >
         {artistsString}
-      </span>
+      </p>
     </div>
   </a>
 </article>
