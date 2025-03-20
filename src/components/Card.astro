@@ -1,5 +1,5 @@
 ---
-import type { Playlist } from "@/lib/data";
+import type { Playlist } from "../lib/data";
 import { CardPlayButton } from "./CardPlayButton";
 
 interface Props {
@@ -42,10 +42,7 @@ const artistsString = artists.join(", ");
         {title}
       </h3>
 
-      <p
-        class="text-sm text-[#a7a7a7] line-clamp-2"
-        transition:name=`playlist ${id} artists`
-      >
+      <p class="text-sm text-[#a7a7a7] line-clamp-2" transition:name=`playlist ${id} artists`>
         {artistsString}
       </p>
     </div>

@@ -1,6 +1,5 @@
-import { useState, useRef } from "react";
-import PlayerCurrentSong from "@/components/PlayerCurrentSong";
-import AudioControls from "@/components/AudioControls";
+import PlayerCurrentSong from "./PlayerCurrentSong";
+import AudioControls from "./AudioControls";
 
 const Player = () => {
   return (

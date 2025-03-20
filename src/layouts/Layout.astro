@@ -1,7 +1,8 @@
 ---
-import AsideMenu from "@/components/AsideMenu.astro";
-import Player from "@/components/Player.jsx";
-import { ViewTransitions } from "astro:transitions";
+import AsideMenu from "../components/AsideMenu.astro";
+import Player from "../components/Player.jsx";
+import { ClientRouter } from "astro:transitions";
+import "../styles/global.css";
 
 interface Props {
   title: string;
@@ -19,7 +20,7 @@ const { title } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <ViewTransitions fallback="none" />
+    <ClientRouter fallback="none" />
   </head>
   <body>
     <div
@@ -88,9 +89,7 @@ const { title } = Astro.props;
 
     <script>
       const grid = document.querySelector("body > div") as HTMLElement;
-      const resizer = document.querySelector(
-        "body > div > aside > div"
-      ) as HTMLElement;
+      const resizer = document.querySelector("body > div > aside > div") as HTMLElement;
 
       resizer?.addEventListener("mousedown", initResize, false);
 

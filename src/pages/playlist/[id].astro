@@ -1,15 +1,19 @@
 ---
 // import MusicsTable from "@/components/MusicsTable.astro"
-import Layout from "@/layouts/Layout.astro";
+import Layout from "../../layouts/Layout.astro";
 // import { CardPlayButton } from "@/components/CardPlayButton"
-import { allPlaylists, songs } from "@/lib/data";
+import { allPlaylists, songs } from "../../lib/data";
+
+export async function getStaticPaths() {
+  return allPlaylists.map((playlist) => ({
+    params: { id: playlist.id },
+  }));
+}
 
 const { id } = Astro.params;
 
 const playlist = allPlaylists.find((playlist) => playlist.id === id);
-const playlistSongs = songs.filter(
-  (song) => song.albumId === playlist?.albumId
-);
+const playlistSongs = songs.filter((song) => song.albumId === playlist?.albumId);
 ---
 
 <Layout title="Spotify Clone">
@@ -33,10 +37,7 @@ const playlistSongs = songs.filter(
         </h1>
 
         <div class="flex flex-col gap-2">
-          <span
-            class="text-sm text-[#a7a7a7]"
-            transition:name=`playlist ${playlist?.id} artists`
-          >
+          <span class="text-sm text-[#a7a7a7]" transition:name=`playlist ${playlist?.id} artists`>
             {playlist?.artists.join(", ")}
           </span>
 

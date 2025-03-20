@@ -1,5 +1,5 @@
-import PlayIcon from "@/icons/PlayCard";
-import PauseIcon from "@/icons/PauseCard";
+import PlayIcon from "../icons/PlayCard";
+import PauseIcon from "../icons/PauseCard";
 // import { usePlayerStore } from "@/store/playerStore";
 
 export function CardPlayButton({ id, size = "small" }) {

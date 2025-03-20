@@ -1,10 +1,6 @@
-import Like from "@/icons/Like";
+import Like from "../icons/Like";
 
-const PlayerCurrentSong = ({
-  image,
-  title = "Lorem ipsum",
-  artists = ["Lorem", "ipsum"],
-}) => {
+const PlayerCurrentSong = ({ image, title = "Lorem ipsum", artists = ["Lorem", "ipsum"] }) => {
   return (
     <div className="w-[30%] min-w-[180px] pl-2">
       <div className="flex items-center gap-4 relative">
@@ -14,9 +10,7 @@ const PlayerCurrentSong = ({
 
         <div className="flex flex-col">
           <h3 className="text-sm truncate">{title}</h3>
-          <span className="text-xs text-[#a7a7a7] truncate">
-            {artists?.join(", ")}
-          </span>
+          <span className="text-xs text-[#a7a7a7] truncate">{artists?.join(", ")}</span>
         </div>
 
         <button

@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from "react";
-import Play from "@/icons/Play";
-import Pause from "@/icons/Pause";
-import Random from "@/icons/Random";
-import Repeat from "@/icons/Repeat";
-import Previous from "@/icons/Previous";
-import Next from "@/icons/Next";
-import { Slider } from "@/components/Slider";
-import { formatTime } from "@/lib/utils";
+import Play from "../icons/Play";
+import Pause from "../icons/Pause";
+import Random from "../icons/Random";
+import Repeat from "../icons/Repeat";
+import Previous from "../icons/Previous";
+import Next from "../icons/Next";
+import { Slider } from "./Slider";
+import { formatTime } from "../lib/utils";
 
 const AudioControls = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -69,9 +69,7 @@ const AudioControls = () => {
       </div>
 
       <div className="flex gap-2 text-xs">
-        <span className="w-10 text-right text-[#a7a7a7]">
-          {formatTime(currentTime)}
-        </span>
+        <span className="w-10 text-right text-[#a7a7a7]">{formatTime(currentTime)}</span>
 
         <Slider
           value={[currentTime]}
@@ -83,9 +81,7 @@ const AudioControls = () => {
           }}
         />
 
-        <span className="w-10 text-[#a7a7a7]">
-          {duration ? formatTime(duration) : "0:00"}
-        </span>
+        <span className="w-10 text-[#a7a7a7]">{duration ? formatTime(duration) : "0:00"}</span>
       </div>
 
       <audio ref={audioRef} />
